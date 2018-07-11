@@ -14,12 +14,12 @@ Before you run the server, you must import database sql under src/main/resources
 
 ## Things need to consider
 Althought I tried to finish the whole project, due to time limit and I was travelling from Beijing to Auckland(I'm now in Aucklank from Saturday), there are still missing points.
-1. Unit test to be finished.
-2. Logging
+1. Unit test to be finished.   -- junit
+2. Logging --- log4j
 3. Better dealing with exceptions
-4. Input checks
-5. Security
-6. yaml
+4. Input checks   -- more logics
+5. Security  --- token checks
+6. yaml   ---  swagger.io
 7. etc
 
 Thank you for effort in reviewing my code.
