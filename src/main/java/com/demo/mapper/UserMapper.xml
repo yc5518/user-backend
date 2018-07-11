@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.demo.model.User">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_status" jdbcType="VARCHAR" property="userStatus" />
+    <result column="notes" jdbcType="VARCHAR" property="notes" />
+  </resultMap>
+  <insert id="insert" parameterType="com.demo.model.User">
+    insert into UserInfo (id, status, create_time, 
+      contact, name, user_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{userStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectUser" parameterType="String"
+     resultType="com.demo.model.User">
+  SELECT * FROM UserInfo 
+  WHERE id = #{id}
+</select>
+<select id="queryUserList" parameterType="String"
+     resultType="com.demo.model.User">
+  SELECT * FROM UserInfo  
+  <if test="_parameter!=null and _parameter!=''">
+        where name LIKE CONCAT(CONCAT('%',#{name}),'%')</if>
+</select>
+<update id="updateUser"  parameterType="com.demo.model.User">
+update UserInfo
+    <set>
+      <if test="name != null">name=#{name},</if>
+      <if test="userStatus != null">user_status=#{userStatus},</if>
+      <if test="contact != null">contact=#{contact},</if>
+      <if test="notes != null">notes=#{notes}</if>
+    </set>
+  where id=#{id}
+</update>
+</mapper>
